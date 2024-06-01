@@ -22,3 +22,4 @@ class Livro(models.Model):
     status_leitura = models.CharField(max_length=15)
     genero = models.ForeignKey(Genero, on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+1
