@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help Scout Login</title>
-    <link rel="stylesheet" href="styles-signin.css">
-</head>
-<body>
+{% extends "employee_register/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    {{form.fullname|as_crispy_field}}
+    {{form.mobile|as_crispy_field}}
     <div class="container">
         <div class="content">
             <div class="login-box">
@@ -32,5 +31,5 @@
             Looking for a better way to talk with customers? <a href="#">Try Help Scout</a>
         </footer>
     </div>
-</body>
-</html>
+</form>
+{% endblock content %}
