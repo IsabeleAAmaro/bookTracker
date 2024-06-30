@@ -1,25 +1,35 @@
 from django.db import models
 
 
-# Create your models here.1
-
 class Genero(models.Model):
-    title = models.CharField(max_length=50)
+    nome = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.title
+        return self.nome
 
 
 class Usuario(models.Model):
     username = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    senha = models.CharField(max_length=15)
+    senha = models.CharField(max_length=128)  # Use a mesma largura do Django User model
+
+    def __str__(self):
+        return self.username
 
 
 class Livro(models.Model):
+    STATUS_CHOICES = [
+        ('Lido', 'Lido'),
+        ('Lendo', 'Lendo'),
+        ('Quero ler', 'Quero ler'),
+    ]
+
     titulo = models.CharField(max_length=100)
     autor = models.CharField(max_length=100)
-    status_leitura = models.CharField(max_length=15)
+    status_leitura = models.CharField(max_length=15, choices=STATUS_CHOICES)
     genero = models.ForeignKey(Genero, on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    ISBN = models.CharField(max_length=13)
+    isbn = models.CharField(max_length=13)
+
+    def __str__(self):
+        return self.titulo

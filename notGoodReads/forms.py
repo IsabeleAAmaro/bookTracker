@@ -1,18 +1,17 @@
 from django import forms
-from .models import Livro
-from .models import Usuario
+from .models import Livro, Usuario
 
 
 class LivroForm(forms.ModelForm):
     class Meta:
         model = Livro
-        fields = ('titulo', 'autor', 'status_leitura', 'genero', 'usuario', 'ISBN')
+        fields = ('titulo', 'autor', 'status_leitura', 'genero', 'usuario', 'isbn')  # 'isbn' minúsculo
         labels = {
-            'titulo': 'Titulo',
+            'titulo': 'Título',
             'autor': 'Autor',
-            'status_leitura': 'Status',
-            'genero': 'Genero',
-            'usuario': 'Usuario',
+            'status_leitura': 'Status de Leitura',
+            'genero': 'Gênero',
+            'usuario': 'Usuário',
             'isbn': 'ISBN'
         }
 
@@ -29,15 +28,15 @@ class LivroForm(forms.ModelForm):
 class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ('username', 'email', 'password')
+        fields = ('username', 'email', 'senha')
         labels = {
-            'username': 'Username',
+            'username': 'Nome de Usuário',
             'email': 'Email',
-            'password': '<PASSWORD>'
+            'senha': 'Senha'
         }
 
     def __init__(self, *args, **kwargs):
         super(UsuarioForm, self).__init__(*args, **kwargs)
         self.fields['username'].empty_label = "Select"
         self.fields['email'].empty_label = "Select"
-        self.fields['password'].empty_label = "Select"
+        self.fields['senha'].empty_label = "Select"
